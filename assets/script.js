@@ -5,8 +5,12 @@ var startButton = document.querySelector("#start-quiz");
 /* on clicking the 'start quiz' button the entire 'title section' should disappear
    and questions should appear. So we are query selecting 'title-section'  */
 var titleSection = document.querySelector("#title-section");
+/* on starting the quiz the question and answers should display so we are query selecting 'question-answer' */
+var questionAnswer = document.querySelector("#question-answer");
 
 startButton.addEventListener("click", function () {
   /* through JS we are changing the CSS properties to hide the 'title-section'  */
   titleSection.style.display = "none";
+  /* through JS we are changing the CSS properties to display the 'question-answer' section */
+  questionAnswer.style.display = "flex";
 });
