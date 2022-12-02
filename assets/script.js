@@ -19,7 +19,7 @@ var questionAnswer = [
   {
     id: 1,
     question:
-      "Which of the following methods is used to access HTML elements using Javascript?",
+      "1. Which of the following methods is used to access HTML elements using Javascript?",
     options: [
       "getElementbyId()",
       "getElementsByClassName()",
@@ -71,3 +71,23 @@ var questionAnswer = [
     answer: "Object",
   },
 ];
+
+/* when start quiz button is pressed by default one of the questions should appear in the HTMl and 
+below is the function for it*/
+function addQuestionToHtml(quesNum) {
+  /* finding the required question from the questionAnswer array using find method */
+  let questionObject = questionAnswer.find(
+    (eachQuestion) => eachQuestion.id === quesNum
+  );
+  /* through query selector getting the id 'question' and assigning the question from the array */
+  document.querySelector("#question").innerHTML = questionObject.question;
+  /* why let elements? 
+Since query selecting id='options' gives the children as array and storing it in a variable */
+  /* using for loop we are setting each options into its respective <div> based on the iterated index */
+  let elements = document.querySelector("#options").children;
+
+  for (let i = 0; i < elements.length; i++) {
+    elements[i].innerHTML = questionObject.options[i];
+  }
+}
+addQuestionToHtml(1);
