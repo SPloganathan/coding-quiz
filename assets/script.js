@@ -31,7 +31,7 @@ var questionAnswer = [
   {
     id: 2,
     question:
-      "Upon encountering empty statements, what does the Javascript Interpreter do?",
+      "2. Upon encountering empty statements, what does the Javascript Interpreter do?",
     options: [
       "Throws an error",
       "Ignores the statements",
@@ -43,7 +43,7 @@ var questionAnswer = [
   {
     id: 3,
     question:
-      "Which of the following methods can be used to display data in some form using Javascript?",
+      "3. Which of the following methods can be used to display data in some form using Javascript?",
     options: [
       "document.write()",
       "console.log()",
@@ -54,7 +54,7 @@ var questionAnswer = [
   },
   {
     id: 4,
-    question: "What is the use of the <noscript> tag in Javascript?",
+    question: "4. What is the use of the <noscript> tag in Javascript?",
     options: [
       "The contents are displayed by non-JS-based browsers.",
       "Clears all the cookies and cache.",
@@ -66,7 +66,7 @@ var questionAnswer = [
   {
     id: 5,
     question:
-      "When an operator's value is NULL, the typeof returned by the unary operator is:",
+      "5. When an operator's value is NULL, the typeof returned by the unary operator is:",
     options: ["Boolean", "Undefined", "Object", "Integer"],
     answer: "Object",
   },
@@ -88,6 +88,27 @@ Since query selecting id='options' gives the children as array and storing it in
 
   for (let i = 0; i < elements.length; i++) {
     elements[i].innerHTML = questionObject.options[i];
+    /* to get the respective question and option we are using data attributes to set */
+    elements[i].setAttribute("data-quesNum", quesNum);
+    elements[i].setAttribute("data-option", questionObject.options[i]);
+    /* on selecting the options */
+    elements[i].addEventListener("click", function (event) {
+      /* we are getting the HTML element of the selevcted option and this will be found in (default)
+      event.target */
+      const optionElement = event.target;
+      const quesNumValue = optionElement.getAttribute("data-quesNum");
+      const selectedOption = optionElement.getAttribute("data-option");
+      /* finding the question details using the question id using 'find()' method */
+      let answerObject = questionAnswer.find(
+        (eachQuestion) => eachQuestion.id === Number(quesNumValue)
+      );
+      /* verifying whether the selected option is right/wrong */
+      if (selectedOption === answerObject.answer) {
+        document.querySelector("#result").innerHTML = "Right";
+      } else {
+        document.querySelector("#result").innerHTML = "Wrong";
+      }
+    });
   }
 }
 addQuestionToHtml(1);

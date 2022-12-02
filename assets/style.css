@@ -57,6 +57,9 @@ body {
   background-color: coral;
   border-radius: 10px;
 }
+.opt:hover {
+  cursor: pointer;
+}
 
 #options {
   gap: 14px;
@@ -77,4 +80,5 @@ body {
   border-top: 1px solid black;
   padding: 10px;
   width: 400px;
+  /* transition: ease-in-out 2s; */
 }
