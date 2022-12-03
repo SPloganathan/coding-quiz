@@ -111,10 +111,16 @@ Since query selecting id='options' gives the children as array and storing it in
       questionTracker++;
       /* Ending the questionaries when we reach the end of questionAnswer array */
       if (questionTracker === questionAnswer.length + 1) {
-        alert("The ENd");
-        return;
+        setTimeout(() => {
+          /* hiding questionaire section and displaying the score section after 1 second */
+          questionAnswerSection.style.display = "none";
+          var scoreSection = document.querySelector("#score-section");
+          scoreSection.style.display = "flex";
+          return;
+        }, 1000);
       }
       /* next question will be displayed after 300ms and result will be set to empty */
+      /* setTimeOut is a inbuilt function which accepts a function and a timer */
       setTimeout(() => {
         addQuestionToHtml(questionTracker);
         document.querySelector("#result").innerHTML = "";
