@@ -80,5 +80,5 @@ body {
   border-top: 1px solid black;
   padding: 10px;
   width: 400px;
-  /* transition: ease-in-out 2s; */
+  transition: ease-out 2s;
 }

@@ -54,7 +54,7 @@ var questionAnswer = [
   },
   {
     id: 4,
-    question: "4. What is the use of the <noscript> tag in Javascript?",
+    question: "4. What is the use of the 'noscript' tag in Javascript?",
     options: [
       "The contents are displayed by non-JS-based browsers.",
       "Clears all the cookies and cache.",
@@ -93,8 +93,8 @@ Since query selecting id='options' gives the children as array and storing it in
     elements[i].setAttribute("data-option", questionObject.options[i]);
     /* on selecting the options */
     elements[i].addEventListener("click", function (event) {
-      /* we are getting the HTML element of the selevcted option and this will be found in (default)
-      event.target */
+      event.stopImmediatePropagation();
+      /* we are getting the HTML element of the selected option and this will be found in (default)event.target */
       const optionElement = event.target;
       const quesNumValue = optionElement.getAttribute("data-quesNum");
       const selectedOption = optionElement.getAttribute("data-option");
@@ -108,7 +108,21 @@ Since query selecting id='options' gives the children as array and storing it in
       } else {
         document.querySelector("#result").innerHTML = "Wrong";
       }
+      questionTracker++;
+      /* Ending the questionaries when we reach the end of questionAnswer array */
+      if (questionTracker === questionAnswer.length + 1) {
+        alert("The ENd");
+        return;
+      }
+      /* next question will be displayed after 300ms and result will be set to empty */
+      setTimeout(() => {
+        addQuestionToHtml(questionTracker);
+        document.querySelector("#result").innerHTML = "";
+      }, 1000);
     });
   }
 }
-addQuestionToHtml(1);
+/* var to track the question number */
+var questionTracker = 1;
+
+addQuestionToHtml(questionTracker);
