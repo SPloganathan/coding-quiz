@@ -133,15 +133,16 @@ var questionTracker = 1;
 
 addQuestionToHtml(questionTracker);
 /* when we type the initials it should turn to uppercase letters */
-document.addEventListener("keyup", function () {
-  let initialElement = document.querySelector("#initial-value");
+let initialElement = document.querySelector("#initial-value");
+initialElement.addEventListener("keyup", function () {
   initialElement.value = initialElement.value.toUpperCase();
 });
 
-document.addEventListener("click", function () {
+var submitButton = document.querySelector("#initial-submit");
+submitButton.addEventListener("click", function () {
   /* getting the scores and intials usig query selector */
   let initialValue = document.querySelector("#initial-value").value;
-  let scoreValue = 22;
+  let scoreValue = 25;
   /* using getitem, checking the previous scores if any! */
   let previousScore = window.localStorage.getItem("scores");
   // score = [{name:"sak", score:22}];
@@ -157,4 +158,42 @@ document.addEventListener("click", function () {
     const score = [{ name: initialValue, score: scoreValue }];
     window.localStorage.setItem("scores", JSON.stringify(score));
   }
+  /* highscore section visibility logic */
+  document.querySelector("#score-section").style.display = "none";
+  displayHighScore();
 });
+
+function displayHighScore() {
+  document.querySelector("#display-highscore").style.display = "flex";
+  /* getting all the scores and setting it into a new variable 'allscores' as a object using parse */
+  let allScores = JSON.parse(window.localStorage.getItem("scores"));
+  /* creating a empty string variable which will be used for concatinating each scores */
+  let htmlString = "";
+  /* iterating each score using 'forEach' and appending the score in 'htmlString' */
+  /*  sorting the scores based on the highscores value using sort function*/
+  allScores
+    .sort((a, b) => b.score - a.score)
+    .forEach((eachScore, index) => {
+      htmlString += `<p>${index + 1}, ${eachScore.name}, ${
+        eachScore.score
+      }</p>`;
+    });
+  /* and setting the values in 'highscore-result */
+  document.querySelector("#highscore-result").innerHTML = htmlString;
+}
+/* click event for Header Highscore  */
+document.querySelector("#score-link").addEventListener("click", function () {
+  document.querySelector("#header").style.display = "none";
+  document.querySelector("#title-section").style.display = "none";
+  document.querySelector("#question-answer").style.display = "none";
+  document.querySelector("#score-section").style.display = "none";
+  displayHighScore();
+});
+/* on clicking of highscore button the local storage gets cleared */
+document
+  .querySelector("#clear-highscores")
+  .addEventListener("click", function () {
+    window.localStorage.clear();
+    /* since the html DOM element will not be cleared we are doing it manually */
+    document.querySelector("#highscore-result").innerHTML = "";
+  });
