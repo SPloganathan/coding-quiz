@@ -132,3 +132,29 @@ Since query selecting id='options' gives the children as array and storing it in
 var questionTracker = 1;
 
 addQuestionToHtml(questionTracker);
+/* when we type the initials it should turn to uppercase letters */
+document.addEventListener("keyup", function () {
+  let initialElement = document.querySelector("#initial-value");
+  initialElement.value = initialElement.value.toUpperCase();
+});
+
+document.addEventListener("click", function () {
+  /* getting the scores and intials usig query selector */
+  let initialValue = document.querySelector("#initial-value").value;
+  let scoreValue = 22;
+  /* using getitem, checking the previous scores if any! */
+  let previousScore = window.localStorage.getItem("scores");
+  // score = [{name:"sak", score:22}];
+
+  if (previousScore) {
+    /* if previous score exist it will be converted into object using 'json parse' */
+    const scores = JSON.parse(previousScore);
+    /* pushing the new scores into the local storage 'scores' */
+    scores.push({ name: initialValue, score: scoreValue });
+    // [{name:"sak", score:22}, {name:"sakthi", score:30}]
+    window.localStorage.setItem("scores", JSON.stringify(scores));
+  } else {
+    const score = [{ name: initialValue, score: scoreValue }];
+    window.localStorage.setItem("scores", JSON.stringify(score));
+  }
+});
