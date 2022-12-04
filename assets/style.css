@@ -95,3 +95,31 @@ body {
   border-radius: 4px;
   padding: 3px;
 }
+#initial-submit:hover {
+  cursor: pointer;
+}
+
+#display-highscore {
+  display: none;
+  justify-content: center;
+}
+
+#go-back {
+  background-color: coral;
+  border: none;
+  border-radius: 4px;
+  padding: 3px;
+}
+#go-back:hover {
+  cursor: pointer;
+}
+
+#clear-highscores {
+  background-color: coral;
+  border: none;
+  border-radius: 4px;
+  padding: 3px;
+}
+#clear-highscores:hover {
+  cursor: pointer;
+}
