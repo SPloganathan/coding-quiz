@@ -225,3 +225,10 @@ function startTimer() {
     }
   }, 1000);
 }
+/* for Go Back Button */
+document.querySelector("#go-back").addEventListener("click", function () {
+  document.querySelector("#header").style.display = "flex";
+  document.querySelector("#title-section").style.display = "flex";
+  document.querySelector("#display-highscore").style.display = "none";
+  document.querySelector("#timer").style.display = "none";
+});
