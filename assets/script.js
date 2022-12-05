@@ -1,3 +1,7 @@
+/* setting the overall timer as 75s */
+var time = 75;
+/* var to track the question number */
+var questionTracker = 1;
 /* when we click on the 'start quiz' button the game has
    to start and the question should display 
    so we are query selecting 'start-quiz' button and adding a click eventlistener.*/
@@ -10,7 +14,10 @@ var questionAnswerSection = document.querySelector("#question-answer");
 
 startButton.addEventListener("click", function () {
   /* startTimer() is used to call the timer function written below */
+  questionTracker = 1;
+  time = 75;
   startTimer();
+  addQuestionToHtml(questionTracker);
   /* through JS we are changing the CSS properties to hide the 'title-section'  */
   titleSection.style.display = "none";
   /* through JS we are changing the CSS properties to display the 'question-answer' section */
@@ -77,6 +84,15 @@ var questionAnswer = [
 /* when start quiz button is pressed by default one of the questions should appear in the HTMl and 
 below is the function for it*/
 function addQuestionToHtml(quesNum) {
+  /* Ending the questionaries when we reach the end of questionAnswer array */
+  if (questionTracker === questionAnswer.length + 1) {
+    setTimeout(() => {
+      /* hiding questionaire section and displaying the score section after 1 second */
+      document.querySelector("#initial-value").value = "";
+      document.querySelector("#result").innerHTML = "";
+      return;
+    }, 500);
+  }
   /* finding the required question from the questionAnswer array using find method */
   let questionObject = questionAnswer.find(
     (eachQuestion) => eachQuestion.id === quesNum
@@ -89,6 +105,7 @@ Since query selecting id='options' gives the children as array and storing it in
   let elements = document.querySelector("#options").children;
 
   for (let i = 0; i < elements.length; i++) {
+    elements[i].classList.remove("prevent-click-event");
     elements[i].innerHTML = questionObject.options[i];
     /* to get the respective question and option we are using data attributes to set */
     elements[i].setAttribute("data-quesNum", quesNum);
@@ -116,27 +133,16 @@ Since query selecting id='options' gives the children as array and storing it in
         time -= 15;
       }
       questionTracker++;
-      /* Ending the questionaries when we reach the end of questionAnswer array */
-      if (questionTracker === questionAnswer.length + 1) {
-        setTimeout(() => {
-          /* hiding questionaire section and displaying the score section after 1 second */
-          return;
-        }, 500);
-      }
       /* next question will be displayed after 500ms and result will be set to empty */
       /* setTimeOut is a inbuilt function which accepts a function and a timer */
       setTimeout(() => {
         addQuestionToHtml(questionTracker);
-        elements[i].classList.remove("prevent-click-event");
         document.querySelector("#result").innerHTML = "";
       }, 500);
     });
   }
 }
-/* var to track the question number */
-var questionTracker = 1;
 
-addQuestionToHtml(questionTracker);
 /* when we type the initials it should turn to uppercase letters */
 let initialElement = document.querySelector("#initial-value");
 initialElement.addEventListener("keyup", function () {
@@ -202,10 +208,10 @@ document
     /* since the html DOM element will not be cleared we are doing it manually */
     document.querySelector("#highscore-result").innerHTML = "";
   });
-/* setting the overall timer as 75s */
-var time = 75;
+
 function startTimer() {
   let timer = document.querySelector("#timer");
+  timer.style.display = "flex";
   var displayTimer = setInterval(() => {
     time--;
     if (time < 0) {
