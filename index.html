@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./assets/style.css" />
+
+    <title>Coding Quiz Game</title>
+  </head>
+  <body>
+    <!-- created header section and divided it into two div -->
+    <header id="header">
+      <!-- specified a class name for each div -->
+      <div class="score-wrapper">
+        <h3 id="score-link">Highscore</h3>
+      </div>
+      <div class="time-wrapper">
+        <h3>Time</h3>
+        <!-- span tag for displaying active timer -->
+        <span id="timer"></span>
+      </div>
+    </header>
+    <!-- created a title section -->
+    <section id="title-section">
+      <!-- created a div for the title text -->
+      <div class="title-wrapper">
+        <h1>Coding Quiz Challenge</h1>
+      </div>
+      <!-- created a div for game description -->
+      <div class="about-game">
+        <p class="about-game-text">
+          Try to answer the following code-related questions within the time
+          limit. Keep in mind that incorrect answers will penalize your
+          scoretime by ten seconds!
+        </p>
+        <!-- submit button to start the quiz -->
+        <button type="submit" id="start-quiz">Start Quiz</button>
+      </div>
+    </section>
+
+    <!-- created a section for question,options and results. And divided it using div  -->
+    <section id="question-answer">
+      <div id="question"></div>
+      <div id="options">
+        <div class="opt" id="opt"></div>
+        <div class="opt" id="opt"></div>
+        <div class="opt" id="opt"></div>
+        <div class="opt" id="opt"></div>
+      </div>
+      <div id="result"></div>
+    </section>
+    <!-- final score section to display the scores, get the initials through button and store it in local storage -->
+    <section id="score-section">
+      <div class="score-container">
+        <h2 class="done">All Done!</h2>
+        <p class="final-score" id="final-score"></p>
+        <p class="initials">
+          Enter Intials:
+          <input type="text" id="initial-value" name="initials" />
+          <button type="submit" id="initial-submit">Submit</button>
+        </p>
+      </div>
+    </section>
+    <!--section to display highscore from local storage -->
+    <section id="display-highscore">
+      <div class="highscore-container">
+        <h2 class="highscore">Highscores</h2>
+        <div id="highscore-result"></div>
+        <div class="score-buttons">
+          <button type="submit" id="go-back">Go Back</button>
+          <button type="submit" id="clear-highscores">Clear Highscores</button>
+        </div>
+      </div>
+    </section>
+    <script src="./assets/script.js"></script>
+  </body>
+</html>

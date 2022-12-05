@@ -1,0 +1,125 @@
+body {
+  margin: 0px;
+  font-family: Georgia, "Times New Roman", Times, serif;
+}
+/* defined variable for common properties */
+:root {
+  --dark-theme: coral;
+  --light-theme: #ecd8d1;
+}
+#header {
+  display: flex;
+  justify-content: space-between;
+  height: 75px;
+  padding: 10px;
+  background-color: var(--light-theme);
+  align-items: center;
+}
+
+#title-section {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  margin: 60px;
+}
+
+.about-game {
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+  align-items: center;
+}
+
+.about-game-text {
+  text-align: center;
+}
+
+#start-quiz {
+  background-color: var(--dark-theme);
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+#question-answer {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  font-size: 24px;
+  gap: 10px;
+  margin: 60px;
+}
+
+.opt {
+  display: flex;
+  padding: 5px 10px;
+  background-color: var(--dark-theme);
+  border-radius: 10px;
+  font-size: 18px;
+}
+.opt:hover {
+  cursor: pointer;
+  background-color: #ff6329;
+  color: white;
+}
+
+#options {
+  gap: 14px;
+  display: flex;
+  flex-direction: column;
+}
+
+.options-hovered:hover {
+  border: 2px solid black;
+  border-radius: 10px;
+}
+
+#question {
+  width: 400px;
+}
+
+#result {
+  border-top: 1px solid black;
+  padding: 10px;
+  width: 400px;
+  transition: ease-out 2s;
+}
+
+#score-section {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+}
+
+#initial-submit {
+  background-color: var(--dark-theme);
+  border: none;
+  border-radius: 4px;
+  padding: 3px;
+}
+
+#display-highscore {
+  display: none;
+  justify-content: center;
+}
+
+#go-back,
+#clear-highscores {
+  background-color: var(--dark-theme);
+  border: none;
+  border-radius: 4px;
+  padding: 10px;
+}
+#go-back:hover,
+#clear-highscores:hover,
+#initial-submit:hover,
+#start-quiz:hover,
+.score-wrapper:hover {
+  cursor: pointer;
+}
+
+.prevent-click-event {
+  pointer-events: none;
+}
