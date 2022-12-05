@@ -9,6 +9,8 @@ var titleSection = document.querySelector("#title-section");
 var questionAnswerSection = document.querySelector("#question-answer");
 
 startButton.addEventListener("click", function () {
+  /* startTimer() is used to call the timer function written below */
+  startTimer();
   /* through JS we are changing the CSS properties to hide the 'title-section'  */
   titleSection.style.display = "none";
   /* through JS we are changing the CSS properties to display the 'question-answer' section */
@@ -107,6 +109,8 @@ Since query selecting id='options' gives the children as array and storing it in
         document.querySelector("#result").innerHTML = "Right";
       } else {
         document.querySelector("#result").innerHTML = "Wrong";
+        /* reducing the timer value by 15s when a question is answered wrong */
+        time -= 15;
       }
       questionTracker++;
       /* Ending the questionaries when we reach the end of questionAnswer array */
@@ -142,7 +146,7 @@ var submitButton = document.querySelector("#initial-submit");
 submitButton.addEventListener("click", function () {
   /* getting the scores and intials usig query selector */
   let initialValue = document.querySelector("#initial-value").value;
-  let scoreValue = 25;
+  let scoreValue = time;
   /* using getitem, checking the previous scores if any! */
   let previousScore = window.localStorage.getItem("scores");
   // score = [{name:"sak", score:22}];
@@ -197,3 +201,26 @@ document
     /* since the html DOM element will not be cleared we are doing it manually */
     document.querySelector("#highscore-result").innerHTML = "";
   });
+/* setting the overall timer as 75s */
+var time = 75;
+function startTimer() {
+  let timer = document.querySelector("#timer");
+  var displayTimer = setInterval(() => {
+    time--;
+    if (time < 0) {
+      time = 0;
+    }
+    timer.innerHTML = time;
+    if (time === 0 || questionTracker === questionAnswer.length + 1) {
+      /* clear interval is a inbuilt function to clear/stop the timer */
+      clearInterval(displayTimer);
+      questionAnswerSection.style.display = "none";
+      /* display the final score based on the timer */
+      /* backtick ` symbol is used for concatinating static and dynamic values */
+      document.querySelector(
+        "#final-score"
+      ).innerHTML = `Your final score is ${time}`;
+      document.querySelector("#scoreSection").style.display = "flex";
+    }
+  }, 1000);
+}
