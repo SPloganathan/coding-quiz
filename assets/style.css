@@ -128,3 +128,6 @@ body {
 #clear-highscores:hover {
   cursor: pointer;
 }
+.prevent-click-event {
+  pointer-events: none;
+}

@@ -95,6 +95,9 @@ Since query selecting id='options' gives the children as array and storing it in
     elements[i].setAttribute("data-option", questionObject.options[i]);
     /* on selecting the options */
     elements[i].addEventListener("click", function (event) {
+      /* prevent multiple clicks on the same option using CSS 
+      pointer-events=none */
+      elements[i].classList.add("prevent-click-event");
       event.stopImmediatePropagation();
       /* we are getting the HTML element of the selected option and this will be found in (default)event.target */
       const optionElement = event.target;
@@ -117,18 +120,16 @@ Since query selecting id='options' gives the children as array and storing it in
       if (questionTracker === questionAnswer.length + 1) {
         setTimeout(() => {
           /* hiding questionaire section and displaying the score section after 1 second */
-          questionAnswerSection.style.display = "none";
-          var scoreSection = document.querySelector("#score-section");
-          scoreSection.style.display = "flex";
           return;
-        }, 1000);
+        }, 500);
       }
-      /* next question will be displayed after 300ms and result will be set to empty */
+      /* next question will be displayed after 500ms and result will be set to empty */
       /* setTimeOut is a inbuilt function which accepts a function and a timer */
       setTimeout(() => {
         addQuestionToHtml(questionTracker);
+        elements[i].classList.remove("prevent-click-event");
         document.querySelector("#result").innerHTML = "";
-      }, 1000);
+      }, 500);
     });
   }
 }
@@ -220,7 +221,7 @@ function startTimer() {
       document.querySelector(
         "#final-score"
       ).innerHTML = `Your final score is ${time}`;
-      document.querySelector("#scoreSection").style.display = "flex";
+      document.querySelector("#score-section").style.display = "flex";
     }
   }, 1000);
 }
