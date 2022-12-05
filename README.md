@@ -24,6 +24,10 @@ Build a timed coding quiz with multiple-choice questions that stores high scores
 
 ## Deployed Screenshot and URL
 
-![alt+text]()
+![alt+text](./assets/screenshot/deploy%201.png)
+![alt+text](./assets/screenshot/deploy%202.png)
+![alt+text](./assets/screenshot/deploy%203.png)
+![alt+text](./assets/screenshot/deploy%204.png)
 
-##
+
+## https://sploganathan.github.io/coding-quiz/
