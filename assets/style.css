@@ -123,3 +123,27 @@ body {
 .prevent-click-event {
   pointer-events: none;
 }
+.time-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+/* added responsive design */
+@media screen and (max-width: 520px) {
+  .about-game {
+    width: 100%;
+  }
+  .title-wrapper h1 {
+    text-align: center;
+  }
+  #question-answer {
+    font-size: 18px;
+    margin: 25px;
+  }
+  #question {
+    width: 100%;
+  }
+  #result {
+    width: 100%;
+  }
+}
